@@ -1,0 +1,21 @@
+.btn {
+  padding: 12px;
+  font-size: 13px;
+  margin: 0 2px;
+  background-color: #56494E;
+  border: none;
+  border-radius: 4px;
+  color: #d4c8c5;
+  cursor: pointer;
+}
+
+.btn.active {
+  color: #e0d0cc;
+  background-color: #2c2126;
+}
+
+@media (min-width: 768px){
+  .btn {
+    font-size: 15px;
+  }
+}

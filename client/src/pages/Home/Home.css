@@ -1,0 +1,34 @@
+.welcome__text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid var(--light-red);
+  border-radius: 10px;
+  padding: 30px;
+  text-align: center;
+  color: var(--light-grey);
+  background-color: var(--medium-grey);
+  width: 80%;
+}
+
+.welcome__heading {
+  font-size: 20px;
+}
+
+.welcome__paragraph {
+  margin-top: 20px;
+}
+
+.footer-text {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .welcome__text {
+    padding: 50px;
+  }
+}

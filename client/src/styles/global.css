@@ -1,0 +1,21 @@
+:root {
+ --light-grey: #d4c8c5;
+ --fair-grey: #9c908d;
+ --light-red: #A62639;
+ --medium-grey: #56494E;
+ --dark-red: #ff0000;
+ --medium-red: #DB324D;
+ --light-white: #e2d7d7;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.clearfix:after {
+  display: table;
+  content: "";
+  clear: both;
+}

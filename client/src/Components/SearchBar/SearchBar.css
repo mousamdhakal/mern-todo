@@ -1,0 +1,28 @@
+.search {
+  padding: 6px 0;
+  text-align: center;
+}
+
+.search__input {
+  outline: none;
+  background-color: var(--light-white);
+  border: none;
+  border-radius: 10px;
+  width: 150px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 15px;
+  color: var(--light-red);
+  padding: 10px;
+}
+
+@media (min-width: 768px) {
+  .search {
+    float: right;
+    padding: 9px 0;
+  }
+
+  .search__input {
+    width: 180px;
+    font-size: 18px;
+  }
+}

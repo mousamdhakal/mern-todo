@@ -1,0 +1,19 @@
+.user__buttons {
+  margin: 5px 0;
+}
+
+.user__button {
+  background-color: var(--light-white);
+  color: var(--light-red);
+}
+
+.sign-in {
+  margin-left: 6px;
+}
+
+@media (min-width: 768px) {
+  .user__buttons {
+    margin: 0;
+    float: right;
+  }
+}
