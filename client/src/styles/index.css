@@ -2,12 +2,18 @@ body {
   background-color: var(--light-grey);
 }
 
-h1,h2,h3,h4,h5,h6, label {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+label {
   font-family: 'Noto Sans', sans-serif;
 }
 
-
-.todos, .form__input {
+.todos,
+.form__input {
   font-family: 'Open Sans', sans-serif;
   font-size: 18px;
   color: var(--light-red);
@@ -40,18 +46,30 @@ h1,h2,h3,h4,h5,h6, label {
   background: transparent;
   padding: 8px;
   border: none;
-}
-
-.todos__button--delete {
   color: var(--light-red);
 }
 
-.todos__button:hover {
+.todos__button--delete:hover {
   color: var(--dark-red);
+}
+
+.todos__button--checkbox:hover {
+  color: green;
 }
 
 .todos__button--edit:hover {
   color: blue;
+}
+
+.todos__button--clear-edit {
+  position: absolute;
+  bottom: 17px;
+  font-size: 30px;
+  right: 4px;
+}
+
+.todo-form {
+  position: relative;
 }
 
 .form {
@@ -73,7 +91,8 @@ h1,h2,h3,h4,h5,h6, label {
   padding: 10px;
 }
 
-.form__input:active, .form__input:focus {
+.form__input:active,
+.form__input:focus {
   padding-bottom: 9px;
   border-bottom: 2px solid var(--medium-grey);
 }
@@ -91,15 +110,14 @@ h1,h2,h3,h4,h5,h6, label {
 
 .server-message--failure {
   background-color: var(--medium-red);
-  color: var(--light-grey)
-
+  color: var(--light-grey);
 }
 
 /* .server-message__text {
 
 } */
 
-@media (min-width: 768px){
+@media (min-width: 768px) {
   .header__brand {
     float: left;
   }
@@ -107,8 +125,9 @@ h1,h2,h3,h4,h5,h6, label {
   .header__text {
     font-size: 35px;
   }
-  
-  .todos, .form__input {
+
+  .todos,
+  .form__input {
     font-size: 20px;
   }
 

@@ -32,7 +32,7 @@ const ToDoList = (props) => {
           </button>
           <button
             className="todos__button todos__button--edit"
-            onClick={() => props.deleteTask(task._id)}
+            onClick={() => props.setEdit(task)}
           >
             <i className="fas fa-edit"></i>
           </button>
