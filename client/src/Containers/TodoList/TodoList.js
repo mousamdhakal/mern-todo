@@ -30,11 +30,17 @@ const ToDoList = (props) => {
               <i className="far fa-square"></i>
             )}
           </button>
+          <button
+            className="todos__button todos__button--edit"
+            onClick={() => props.deleteTask(task._id)}
+          >
+            <i className="fas fa-edit"></i>
+          </button>
         </div>
       );
     })
   ) : (
-      <span className="todos__text todos__text--empty">All tasks completed.</span>
+    <span className="todos__text todos__text--empty">All tasks completed.</span>
   );
   return <div className="todos__list">{todoList}</div>;
 };

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import ToDoList from '../TodoList/TodoList';
 import AddTask from '../AddTask/AddTask';
 import * as todosActions from '../../actions/todosActions';
+import setAuthorizationToken from '../../utils/setAuthorizationToken';
 import {
   getAllTodo,
   addTodo,
@@ -15,7 +17,15 @@ class Todos extends Component {
   constructor(props) {
     super(props);
 
-    getAllTodo((todos) => this.props.setTodos(todos));
+    getAllTodo((todos) => {
+      if (todos) {
+        this.props.setTodos(todos);
+      } else {
+        setAuthorizationToken(false);
+        localStorage.removeItem('jwtToken');
+        this.props.history.push('/signin');
+      }
+    });
   }
 
   deleteTask = (id) => {
@@ -46,7 +56,6 @@ class Todos extends Component {
       }
       return task;
     });
-    console.log(updatedTask);
     updateTodo(updatedTask, () => {
       this.props.setTodos(updatedTodos);
     });
@@ -106,4 +115,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Todos);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Todos));

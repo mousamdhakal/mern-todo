@@ -30,7 +30,7 @@ export function getAllTodo(callBack) {
   axios
     .get(`${BASE_URL}/todo`)
     .then((res) => callBack(res.data))
-    .catch((err) => console.log(err));
+    .catch((err) => callBack(null));
 }
 
 export function addTodo(data, callBack) {

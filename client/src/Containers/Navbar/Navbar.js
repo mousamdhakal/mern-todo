@@ -14,7 +14,6 @@ class NavBar extends Component {
   logout = () => {
     setAuthorizationToken(false);
     localStorage.removeItem('jwtToken');
-    localStorage.removeItem('user');
     this.props.removeUser();
     this.props.setLogout({
       message: 'Logout successful',
