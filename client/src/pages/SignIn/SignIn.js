@@ -23,8 +23,8 @@ function SignIn() {
   const onSuccess = (data) => {
     if (data.status === 200) {
       localStorage.setItem('jwtToken', data.token);
-      localStorage.setItem('user', JSON.stringify(data.data));
       setAuthorizationToken(data.token);
+      dispatch(userActions.setUser(data.data));
       dispatch(signActions.setSignIn(data));
       history.push('/dashboard');
     }

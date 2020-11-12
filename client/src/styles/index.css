@@ -50,6 +50,10 @@ h1,h2,h3,h4,h5,h6, label {
   color: var(--dark-red);
 }
 
+.todos__button--edit:hover {
+  color: blue;
+}
+
 .form {
   padding: 20px 0;
 }
