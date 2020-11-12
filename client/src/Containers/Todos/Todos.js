@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import ToDoList from '../TodoList/TodoList';
 import AddTask from '../AddTask/AddTask';
 import * as todosActions from '../../actions/todosActions';
+import * as userActions from '../../actions/userActions';
+import * as signActions from '../../actions/signActions';
 import setAuthorizationToken from '../../utils/setAuthorizationToken';
 import {
   getAllTodo,
@@ -27,6 +29,11 @@ class Todos extends Component {
       } else {
         setAuthorizationToken(false);
         localStorage.removeItem('jwtToken');
+        this.props.removeUser();
+        this.props.setSignIn({
+          message: 'Unable to verify token. Please sign In to Continue',
+          status: 404,
+        });
         this.props.history.push('/signin');
       }
     });
@@ -123,7 +130,12 @@ class Todos extends Component {
   render() {
     return (
       <>
-        <AddTask editTask={this.changeTaskText} addTask={this.addNewTask} toEditTodo={this.state.todoToEdit} clearEdit={this.clearTodoToEdit} />
+        <AddTask
+          editTask={this.changeTaskText}
+          addTask={this.addNewTask}
+          toEditTodo={this.state.todoToEdit}
+          clearEdit={this.clearTodoToEdit}
+        />
         <ToDoList
           setEdit={this.setTodoToEdit}
           tasks={this.searchTasks()}
@@ -141,8 +153,14 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    removeUser: () => {
+      dispatch(userActions.removeUser());
+    },
     setTodos: (todos) => {
       dispatch(todosActions.setTodos(todos));
+    },
+    setSignIn: (message) => {
+      dispatch(signActions.setSignIn(message));
     },
   };
 };

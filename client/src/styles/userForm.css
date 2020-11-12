@@ -42,7 +42,6 @@
   color: var(--medium-grey);
   transition: all 0.2s 0s;
   text-transform: uppercase;
-  font-family: ;
 }
 
 .user-form__submit:hover {

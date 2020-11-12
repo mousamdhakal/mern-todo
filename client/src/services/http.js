@@ -11,7 +11,16 @@ export function registerUser(data, callBack) {
     })
     // .then((res) => res.json())
     .then((res) => callBack(res.data))
-    .catch((error) => callBack(error.response.data));
+    .catch((error) => {
+      if (error.response) {
+        callBack(error.response.data);
+      } else {
+        callBack({
+          message: 'Unable to connect to server',
+          status: 404,
+        });
+      }
+    });
 }
 
 export function loginUser(data, onSuccess, onFailure) {
@@ -23,7 +32,16 @@ export function loginUser(data, onSuccess, onFailure) {
     })
     // .then((res) => res.json())
     .then((res) => onSuccess(res.data))
-    .catch((error) => onFailure(error.response.data));
+    .catch((error) => {
+      if (error.response) {
+        onFailure(error.response.data);
+      } else {
+        onFailure({
+          message: 'Unable to connect to server',
+          status: 404,
+        });
+      }
+    });
 }
 
 export function getAllTodo(callBack) {
