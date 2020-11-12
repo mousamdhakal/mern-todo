@@ -17,6 +17,10 @@ class Todos extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      todoToEdit: null,
+    };
+
     getAllTodo((todos) => {
       if (todos) {
         this.props.setTodos(todos);
@@ -27,6 +31,18 @@ class Todos extends Component {
       }
     });
   }
+
+  setTodoToEdit = (todo) => {
+    this.setState({
+      todoToEdit: todo,
+    });
+  };
+
+  clearTodoToEdit = (todo) => {
+    this.setState({
+      todoToEdit: null,
+    });
+  };
 
   deleteTask = (id) => {
     let tasks = this.props.todos.filter((todo) => {
@@ -61,6 +77,21 @@ class Todos extends Component {
     });
   };
 
+  changeTaskText = (text) => {
+    let updatedTask;
+    let updatedTodos = this.props.todos.map((task) => {
+      if (task._id === this.state.todoToEdit._id) {
+        task.todo = text;
+        updatedTask = task;
+      }
+      return task;
+    });
+    updateTodo(updatedTask, () => {
+      this.props.setTodos(updatedTodos);
+    });
+    this.state.todoToEdit = null;
+  };
+
   filterTasks = (tasks) => {
     if (this.props.display === 'all') {
       return tasks;
@@ -92,8 +123,9 @@ class Todos extends Component {
   render() {
     return (
       <>
-        <AddTask addTask={this.addNewTask} />
+        <AddTask editTask={this.changeTaskText} addTask={this.addNewTask} toEditTodo={this.state.todoToEdit} clearEdit={this.clearTodoToEdit} />
         <ToDoList
+          setEdit={this.setTodoToEdit}
           tasks={this.searchTasks()}
           deleteTask={this.deleteTask}
           changeTaskStatus={this.changeTaskStatus}

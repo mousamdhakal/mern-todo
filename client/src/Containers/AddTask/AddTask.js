@@ -6,7 +6,21 @@ class AddTask extends Component {
 
     this.state = {
       text: '',
+      edit: false,
     };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.toEditTodo &&
+      this.props.toEditTodo != prevProps.toEditTodo
+    ) {
+      this.setState({
+        text: this.props.toEditTodo.todo,
+        edit: true,
+      });
+      document.getElementById('todo-form').focus();
+    }
   }
 
   handleChange = (e) => {
@@ -15,20 +29,32 @@ class AddTask extends Component {
     });
   };
 
+  removeEdit = () => {
+    this.setState({
+      text: '',
+      edit: false,
+    });
+    this.props.clearEdit();
+  };
+
   handleSubmit = (e) => {
     e.preventDefault();
-    if (this.state.text) {
+    if (this.state.text && !this.state.edit) {
       this.props.addTask(this.state.text);
       this.setState({
         text: '',
       });
+    } else if (this.state.text && this.state.edit) {
+      this.props.editTask(this.state.text);
+      this.removeEdit();
     }
   };
 
   render() {
     return (
-      <form className="form" onSubmit={this.handleSubmit}>
+      <form className="form todo-form" onSubmit={this.handleSubmit}>
         <input
+          id="todo-form"
           className="form__input"
           type="text"
           placeholder="Add task here"
@@ -36,6 +62,15 @@ class AddTask extends Component {
           value={this.state.text}
           autoFocus
         />
+        {this.state.edit ? (
+          <button
+            type="reset"
+            className="todos__button todos__button--clear-edit"
+            onClick={() => this.removeEdit()}
+          >
+            <i className="far fa-times-circle"></i>
+          </button>
+        ) : null}
       </form>
     );
   }
