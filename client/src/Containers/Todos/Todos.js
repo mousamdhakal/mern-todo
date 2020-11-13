@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import ToDoList from '../TodoList/TodoList';
 import AddTask from '../AddTask/AddTask';
@@ -32,6 +34,10 @@ class Todos extends Component {
     });
   }
 
+  onFail = (message) => {
+    toast(message);
+  }
+
   setTodoToEdit = (todo) => {
     this.setState({
       todoToEdit: todo,
@@ -45,12 +51,15 @@ class Todos extends Component {
   };
 
   deleteTask = (id) => {
+    const oldTasks = this.props.todos;
     let tasks = this.props.todos.filter((todo) => {
       return todo._id !== id;
     });
+    this.props.setTodos(tasks);
     deleteTodo(id, () => {
-      this.props.setTodos(tasks);
-    });
+      toast.error('Failed to delete');
+      this.props.setTodos(oldTasks);
+    },);
   };
 
   addNewTask = (text) => {
@@ -64,6 +73,7 @@ class Todos extends Component {
   };
 
   changeTaskStatus = (id) => {
+    const oldTodos = this.props.todos;
     let updatedTask;
     let updatedTodos = this.props.todos.map((task) => {
       if (task._id === id) {
@@ -72,8 +82,10 @@ class Todos extends Component {
       }
       return task;
     });
+    this.props.setTodos(updatedTodos);
     updateTodo(updatedTask, () => {
-      this.props.setTodos(updatedTodos);
+      toast.error('Failed to update');
+      this.props.setTodos(oldTodos);
     });
   };
 
@@ -123,6 +135,7 @@ class Todos extends Component {
   render() {
     return (
       <>
+      <ToastContainer position="bottom-right" pauseOnFocusLoss draggable />
         <AddTask editTask={this.changeTaskText} addTask={this.addNewTask} toEditTodo={this.state.todoToEdit} clearEdit={this.clearTodoToEdit} />
         <ToDoList
           setEdit={this.setTodoToEdit}

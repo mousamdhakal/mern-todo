@@ -113,6 +113,18 @@ label {
   color: var(--light-grey);
 }
 
+.Toastify__toast--error {
+  background: var(--medium-red) !important;
+  font-family: 'Open Sans', sans-serif !important;
+  font-size: 16px;
+  border-radius: 8px !important;
+  padding: 5px 10px !important;
+}
+
+.Toastify__close-button {
+  align-self: auto !important;
+}
+
 /* .server-message__text {
 
 } */

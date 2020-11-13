@@ -6,7 +6,8 @@
   "author": "Mousam Dhakal",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "node app.js",
+    "devStart": "nodemon app.js"
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1",

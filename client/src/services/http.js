@@ -52,15 +52,13 @@ export function updateTodo(data, callBack) {
         'content-type': 'application/json',
       },
     })
-    // .then((res) => res.json())
-    .then((res) => callBack(res.data.data))
-    .catch((error) => console.log(error));
+    .then((res) => {})
+    .catch((error) => callBack());
 }
 
 export function deleteTodo(id, callBack) {
   axios
     .delete(`${BASE_URL}/todo/${id}`)
-    // .then((res) => res.json())
-    .then((res) => callBack(res.data))
-    .catch((error) => console.log(error));
+    .then((res) => {})
+    .catch((error) => callBack());
 }

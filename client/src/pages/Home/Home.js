@@ -1,5 +1,4 @@
 import React from 'react';
-import GitHubCorners from '@uiw/react-github-corners';
 
 import './Home.css';
 import NavBar from '../../Containers/Navbar/Navbar';
