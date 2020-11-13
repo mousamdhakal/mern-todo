@@ -40,7 +40,7 @@ const ToDoList = (props) => {
       );
     })
   ) : (
-    <span className="todos__text todos__text--empty">All tasks completed.</span>
+    <span className="todos__text todos__text--empty">No tasks found.</span>
   );
   return <div className="todos__list">{todoList}</div>;
 };
