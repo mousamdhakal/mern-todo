@@ -2,11 +2,15 @@
 
 Todo list with authentication and login using MERN stack
 
-## Technologies used:
+[Live site](https://mern-todo.netlify.app/)
+
+Tech and libraries used:
+
 ### Frontend (client)
 ---
 - React 
 - Redux
+- Axios
 
 ### Backend (server)
 --- 
@@ -15,3 +19,9 @@ Todo list with authentication and login using MERN stack
 - Mongodb(database) 
 - Mongoose
 - JWT for authentication
+
+### Hosting
+---
+- React App -> Netlify
+- Node server -> Heroku
+- Mongodb Database -> Mongo Atlas
