@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:3333/api';
+const BASE_URL = 'http://mern-rest-todo-api.herokuapp.com/api';
 
 export function registerUser(data, callBack) {
   axios
