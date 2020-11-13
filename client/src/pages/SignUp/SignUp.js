@@ -1,6 +1,7 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import { registerUser } from '../../services/http';
 import '../../styles/userForm.css';
@@ -10,6 +11,7 @@ import * as signActions from '../../actions/signActions';
 export default function SignUp() {
   let message = useSelector((state) => state.sign.signUpMessage);
   const dispatch = useDispatch();
+  let history = useHistory();
   dispatch(signActions.setSignIn(null));
 
   const handleSignUp = (data) => {
@@ -17,7 +19,8 @@ export default function SignUp() {
   };
 
   const callBack = (data) => {
-    dispatch(signActions.setSignUp(data));
+    dispatch(signActions.setSignIn(data));
+    history.push('/signin');
   };
 
   const formik = useFormik({
