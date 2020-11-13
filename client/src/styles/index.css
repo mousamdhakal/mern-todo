@@ -12,6 +12,13 @@ label {
   font-family: 'Noto Sans', sans-serif;
 }
 
+input,
+p,
+span,
+button {
+  font-family: 'Open Sans', sans-serif;
+}
+
 .todos,
 .form__input {
   font-family: 'Open Sans', sans-serif;

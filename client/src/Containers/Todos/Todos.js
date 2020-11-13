@@ -7,6 +7,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import ToDoList from '../TodoList/TodoList';
 import AddTask from '../AddTask/AddTask';
 import * as todosActions from '../../actions/todosActions';
+import * as userActions from '../../actions/userActions';
+import * as signActions from '../../actions/signActions';
 import setAuthorizationToken from '../../utils/setAuthorizationToken';
 import {
   getAllTodo,
@@ -29,6 +31,11 @@ class Todos extends Component {
       } else {
         setAuthorizationToken(false);
         localStorage.removeItem('jwtToken');
+        this.props.removeUser();
+        this.props.setSignIn({
+          message: 'Unable to verify token. Please sign In to Continue',
+          status: 404,
+        });
         this.props.history.push('/signin');
       }
     });
@@ -83,6 +90,24 @@ class Todos extends Component {
       return task;
     });
     this.props.setTodos(updatedTodos);
+    updateTodo(updatedTask, () => {
+      toast.error('Failed to update');
+      this.props.setTodos(oldTodos);
+    });
+  };
+
+  changeTaskText = (text) => {
+    const oldTodos = this.props.todos;
+    let updatedTask;
+    let updatedTodos = this.props.todos.map((task) => {
+      if (task._id === this.state.todoToEdit._id) {
+        task.todo = text;
+        updatedTask = task;
+      }
+      return task;
+    });
+    this.props.setTodos(updatedTodos);
+    this.state.todoToEdit = null;
     updateTodo(updatedTask, () => {
       toast.error('Failed to update');
       this.props.setTodos(oldTodos);
@@ -154,8 +179,14 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    removeUser: () => {
+      dispatch(userActions.removeUser());
+    },
     setTodos: (todos) => {
       dispatch(todosActions.setTodos(todos));
+    },
+    setSignIn: (message) => {
+      dispatch(signActions.setSignIn(message));
     },
   };
 };

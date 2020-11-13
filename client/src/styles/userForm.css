@@ -27,7 +27,7 @@
   width: 100%;
   margin: 5px 0;
   background-color: var(--light-grey);
-  padding: 10px 5px;
+  padding: 10px;
   border-radius: 5px;
   border: none;
 }
@@ -35,12 +35,13 @@
 .user-form__submit {
   border: none;
   border-radius: 5px;
-  padding: 10px;
+  padding: 10px 20px;
   margin: 15px 5px;
   cursor: pointer;
-  background-color: var(--fair-grey);
+  background-color: var(--offwhite-grey);
   color: var(--medium-grey);
   transition: all 0.2s 0s;
+  text-transform: uppercase;
 }
 
 .user-form__submit:hover {
